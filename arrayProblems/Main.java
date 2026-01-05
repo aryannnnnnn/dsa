@@ -13,7 +13,7 @@ public class Main {
       arr[i] = scanner.nextInt();
     }
 
-    System.out.println(checkSortedRotated(arr));
+    removeDuplicates(arr, arr.length);
   }
 
   public static int findLargest(int[] arr) {
@@ -74,5 +74,26 @@ public class Main {
       return true;
     }
     return false;
+  }
+
+  public static void removeDuplicates(int[] arr, int n) {
+    int i = 0;
+    int current = 0;
+    while (i < n - 1) {
+      if (arr[i] == arr[i + 1]) {
+        i++;
+        continue;
+      } else {
+        arr[current] = arr[i];
+        i++;
+        current++;
+      }
+    }
+    if (arr[arr.length - 1] != arr[current]) {
+      arr[current] = arr[arr.length - 1];
+    }
+    for (int j = 0; j <= current; j++) {
+      System.out.println(arr[j]);
+    }
   }
 }
