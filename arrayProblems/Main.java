@@ -13,7 +13,11 @@ public class Main {
       arr[i] = scanner.nextInt();
     }
 
-    removeDuplicates(arr, arr.length);
+    shiftToLeftBy1(arr, arr.length);
+
+    for (int el : arr) {
+      System.out.print(el + " ");
+    }
   }
 
   public static int findLargest(int[] arr) {
@@ -95,5 +99,16 @@ public class Main {
     for (int j = 0; j <= current; j++) {
       System.out.println(arr[j]);
     }
+  }
+
+  public static void shiftToLeftBy1(int[] arr, int n) {
+    int first = arr[0];
+    for (int i = 0; i < n - 1; i++) {
+      arr[i] = arr[i + 1];
+    }
+    arr[n - 1] = first;
+  }
+
+  public static void shiftToLeftByn(int[] arr, int n, int jumper) {
   }
 }
