@@ -13,7 +13,7 @@ public class Main {
       arr[i] = scanner.nextInt();
     }
 
-    shiftToLeftBy1(arr, arr.length);
+    shiftToRightByn(arr, arr.length, 4);
 
     for (int el : arr) {
       System.out.print(el + " ");
@@ -110,5 +110,50 @@ public class Main {
   }
 
   public static void shiftToLeftByn(int[] arr, int n, int jumper) {
+    if (jumper > n) {
+      return;
+    }
+    int[] firstN = new int[jumper];
+
+    for (int i = 0; i < jumper; i++) {
+      firstN[i] = arr[i];
+    }
+
+    for (int i = jumper; i < n; i++) {
+      arr[i - jumper] = arr[i];
+    }
+
+    int tmp = 0;
+    for (int i = n - jumper; i < n; i++) {
+      arr[i] = firstN[tmp];
+      tmp++;
+    }
+  }
+
+  public static void shiftToRightByn(int[] arr, int n, int jumper) {
+    if (jumper > n) {
+      return;
+    }
+    int[] lastN = new int[jumper];
+
+    int tmp = 0;
+    for (int i = (n - jumper); i < n; i++) {
+      lastN[tmp] = arr[i];
+      tmp++;
+    }
+
+    for (int el : lastN) {
+      System.out.print(el + " ");
+    }
+
+    System.out.println();
+
+    for (int i = n - 1; i > jumper - 1; i--) {
+      arr[i] = arr[i - jumper];
+    }
+
+    for (int i = 0; i < lastN.length; i++) {
+      arr[i] = lastN[i];
+    }
   }
 }
