@@ -13,7 +13,7 @@ public class Main {
       arr[i] = scanner.nextInt();
     }
 
-    shiftToRightByn(arr, arr.length, 4);
+    linearSearch(arr, arr.length);
 
     for (int el : arr) {
       System.out.print(el + " ");
@@ -155,5 +155,33 @@ public class Main {
     for (int i = 0; i < lastN.length; i++) {
       arr[i] = lastN[i];
     }
+  }
+
+  public static void moveZeroToEnd(int[] arr, int n) {
+    int pointer = 0;
+    int target = 1;
+    while (target < n) {
+      if (arr[target] != 0) {
+        arr[pointer] = arr[target];
+        pointer++;
+      }
+      target++;
+    }
+    while (pointer < n) {
+      arr[pointer] = 0;
+      pointer++;
+    }
+  }
+
+  public static void linearSearch(int[] arr, int n) {
+    int target = 4;
+    for (int i = 0; i < n; i++) {
+      if (arr[i] == target) {
+        System.out.println(i);
+        return;
+      }
+    }
+    System.out.println("-1");
+    return;
   }
 }
