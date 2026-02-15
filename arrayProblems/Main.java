@@ -13,7 +13,17 @@ public class Main {
       arr[i] = scanner.nextInt();
     }
 
-    linearSearch(arr, arr.length);
+    maximumConsecutiveOne(arr, n);
+
+    // System.out.print("Please Enter the array2 limit: ");
+    // int m = scanner.nextInt();
+    // int[] arr2 = new int[m];
+    //
+    // for (int i = 0; i < m; i++) {
+    // System.out.print("Please Enter the " + i + "th element: ");
+    // arr2[i] = scanner.nextInt();
+    // }
+    // int[] newArr = unionOf2Array(arr, arr2, arr.length, arr2.length);
 
     for (int el : arr) {
       System.out.print(el + " ");
@@ -183,5 +193,98 @@ public class Main {
     }
     System.out.println("-1");
     return;
+  }
+
+  public static int[] unionOf2Array(int[] arr, int[] arr2, int n1, int n2) {
+    int p1 = 0;
+    int p2 = 0;
+    int[] newArr = new int[n1 + n2];
+    int currentP = 0;
+    while (p1 < n1 && p2 < n2) {
+
+      if (p1 != 0) {
+        if (arr[p1] == arr[p1 - 1]) {
+          p1++;
+          continue;
+        }
+      }
+      if (p2 != 0) {
+        if (arr2[p2] == arr2[p2 - 1]) {
+          p2++;
+          continue;
+        }
+      }
+
+      if (arr[p1] < arr2[p2]) {
+        newArr[currentP] = arr[p1++];
+        currentP++;
+      } else if (arr2[p2] < arr[p1]) {
+        newArr[currentP] = arr2[p2++];
+        currentP++;
+      } else {
+        newArr[currentP] = arr[p1];
+        p1++;
+        p2++;
+        currentP++;
+      }
+
+    }
+    if (p1 != n1) {
+      while (p1 < n1) {
+        if (p1 != 0) {
+          if (arr[p1] == arr[p1 - 1]) {
+            p1++;
+            continue;
+          }
+        }
+        newArr[currentP] = arr[p1++];
+        currentP++;
+      }
+    }
+    if (p2 != n2) {
+      while (p2 < n2) {
+        if (p2 != 0) {
+          if (arr2[p2] == arr2[p2 - 1]) {
+            p2++;
+            continue;
+          }
+        }
+        newArr[currentP] = arr2[p2++];
+        currentP++;
+      }
+    }
+    return newArr;
+  }
+
+  public static void findMissing(int[] arr, int n) {
+    int sum = 0;
+    int sumToN = 0;
+    for (int i = 0; i < n; i++) {
+      sum += arr[i];
+    }
+    for (int i = 0; i <= n + 1; i++) {
+      sumToN += i;
+    }
+    int missing = sumToN - sum;
+    System.out.println("The missing number is: " + missing + " ");
+  }
+
+  public static void maximumConsecutiveOne(int[] arr, int n) {
+    int currentCount = 0;
+    int maximumCount = 0;
+    for (int i = 0; i < n; i++) {
+      if (arr[i] == 0) {
+        if (currentCount > maximumCount) {
+          maximumCount = currentCount;
+        }
+        currentCount = 0;
+      } else if (arr[i] == 1) {
+        currentCount += 1;
+      }
+    }
+    if (currentCount > maximumCount) {
+      maximumCount = currentCount;
+    }
+    System.out.println(maximumCount);
   }
 }
