@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
   public static void main(String args[]) {
@@ -13,7 +15,7 @@ public class Main {
       arr[i] = scanner.nextInt();
     }
 
-    maximumConsecutiveOne(arr, n);
+    findSingleOccuranceElement(arr, n);
 
     // System.out.print("Please Enter the array2 limit: ");
     // int m = scanner.nextInt();
@@ -286,5 +288,26 @@ public class Main {
       maximumCount = currentCount;
     }
     System.out.println(maximumCount);
+  }
+
+  public static void findSingleOccuranceElement(int[] arr, int n) {
+    // Map<Integer, Integer> allElements = new HashMap<>();
+    // for (int i = 0; i < n; i++) {
+    // allElements.merge(arr[i], 1, Integer::sum);
+    // }
+    // for (Map.Entry<Integer, Integer> entry : allElements.entrySet()) {
+    // int value = entry.getValue();
+    // if (value == 1) {
+    // System.out.println("The single occurance Element is " + entry.getKey());
+    // return;
+    // }
+    // }
+    //
+    // Optimal Approach
+    int xorr = 0;
+    for (int el : arr) {
+      xorr ^= el;
+    }
+    System.out.println("The single occurance Element is " + xorr);
   }
 }
